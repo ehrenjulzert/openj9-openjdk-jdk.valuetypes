@@ -474,7 +474,13 @@ final class MemberName implements Member, Cloneable {
     }
 
     /** Query whether this member is a flattened field */
-    public boolean isFlattened() { return (flags & MN_FLATTENED) == MN_FLATTENED; }
+    public boolean isFlattened() { 
+	System.out.println("In isFlattened: " + ((flags & MN_FLATTENED) == MN_FLATTENED));
+	if (this.getClass().isValue()) {
+		return true;
+	}
+	return (flags & MN_FLATTENED) == MN_FLATTENED;
+    }
 
     /** Query whether this member is a field of a primitive class. */
     public boolean isInlineableField()  {
